@@ -32,14 +32,47 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* Subtle gradient for depth */
             background: radial-gradient(circle at center, #111 0%, #050505 100%);
         }
 
-        /* --- 1. TOP CENTER TITLE --- */
+        /* --- 1. TOP NAVIGATION (Restored) --- */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 12px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* --- 2. HEADER (Title) --- */
         header {
             width: 100%;
-            padding-top: 60px;
+            padding-top: 40px;
             text-align: center;
             z-index: 10;
         }
@@ -51,13 +84,13 @@
             text-transform: uppercase;
         }
 
-        /* --- 2. MIDDLE SECTION (Left & Right Content) --- */
+        /* --- 3. MAIN (Left & Right Center Text) --- */
         main {
-            flex: 1; /* Pushes header to top and footer to bottom */
+            flex: 1;
             display: flex;
-            justify-content: space-between; /* Pushes items to far left and far right */
-            align-items: center; /* Centers them vertically in the middle of the screen */
-            padding: 0 80px; /* Space from the edges */
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 80px;
         }
 
         .middle-text {
@@ -69,20 +102,15 @@
             font-weight: 300;
         }
 
-        .left-mid {
-            text-align: left;
-        }
+        .left-mid { text-align: left; }
+        .right-mid { text-align: right; }
 
-        .right-mid {
-            text-align: right;
-        }
-
-        /* --- 3. BOTTOM SECTION (Login/Reg & Find) --- */
+        /* --- 4. FOOTER (Login/Reg & Find) --- */
         footer {
             width: 100%;
             display: flex;
-            justify-content: space-between; /* Pushes content to far left and far right */
-            align-items: flex-end; /* Aligns them to the bottom */
+            justify-content: space-between;
+            align-items: flex-end;
             padding: 40px 80px 60px 80px;
         }
 
@@ -102,7 +130,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
-            transition: opacity 0.3s;
+            transition: 0.3s;
         }
 
         .footer-link:hover {
@@ -137,17 +165,30 @@
             h1 {
                 letter-spacing: 10px;
             }
+            .nav-links {
+                gap: 20px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Center -->
+    <!-- Navigation (Restored) -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Schemes</a></li>
+        </ul>
+    </nav>
+
+    <!-- Top Center Title -->
     <header>
         <h1>NEUROSCHOLAR</h1>
     </header>
 
-    <!-- Middle Section (Left Side Center & Right Side Center) -->
+    <!-- Middle Split Content -->
     <main>
         <div class="middle-text left-mid">
             All your scholarships<br>at one site. Your AI mentor.
@@ -158,7 +199,7 @@
         </div>
     </main>
 
-    <!-- Bottom Section (Login/Reg Left & Find Right) -->
+    <!-- Bottom Corners -->
     <footer>
         <div class="footer-left">
             <a href="#" class="footer-link">Login</a>
