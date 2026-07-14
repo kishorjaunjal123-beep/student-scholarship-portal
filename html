@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroscholar | AI Web Mentor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --font-main: 'Inter', sans-serif;
+            --dim-text: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 50px;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.5;
+        }
+
+        /* --- MAIN TITLE (TOP CENTER) --- */
+        header {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Pushes it towards the top */
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* --- BOTTOM THREE-COLUMN CONTENT --- */
+        .bottom-container {
+            width: 100%;
+            padding: 40px 60px 60px 60px;
+            display: flex;
+            justify-content: space-between; /* Spaces Left, Center, Right */
+            align-items: flex-end;
+        }
+
+        /* We use flex: 1 on all three to ensure the Center one is mathematically centered */
+        .column {
+            flex: 1;
+        }
+
+        .col-left {
+            text-align: left;
+        }
+
+        .col-center {
+            text-align: center;
+        }
+
+        .col-right {
+            text-align: right;
+        }
+
+        .column p {
+            font-size: 11px;
+            line-height: 1.8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .col-left p { color: var(--dim-text); }
+        .col-center p { 
+            font-weight: 700; 
+            letter-spacing: 3px;
+            /* A subtle pulse effect for the "AI Active" text */
+            animation: pulse 2s infinite;
+        }
+        .col-right p { color: var(--dim-text); }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .bottom-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+                padding-bottom: 40px;
+            }
+            .col-left, .col-center, .col-right {
+                text-align: center;
+            }
+            h1 {
+                letter-spacing: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Schemes</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Title (Top and Center) -->
+    <header>
+        <h1>NEUROSCHOLAR</h1>
+    </header>
+
+    <!-- Bottom Content (Left, Center, Right) -->
+    <div class="bottom-container">
+        
+        <!-- Left Side -->
+        <div class="column col-left">
+            <p>All your scholarships<br>at one site. Your AI mentor.</p>
+        </div>
+
+        <!-- Center Side -->
+        <div class="column col-center">
+            <p>● AI AGENT ACTIVE</p>
+        </div>
+
+        <!-- Right Side -->
+        <div class="column col-right">
+            <p>A Neurotitan Community<br>Initiative. Estd 2026</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
