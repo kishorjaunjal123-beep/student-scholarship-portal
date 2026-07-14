@@ -6,13 +6,15 @@
     <title>Neuroscholar | AI Web Mentor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
+            --bg-color: #050505;
             --text-color: #ffffff;
-            --font-main: 'Inter', sans-serif;
-            --dim-text: rgba(255, 255, 255, 0.6);
+            --dim-text: rgba(255, 255, 255, 0.5);
+            --accent-color: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -24,118 +26,112 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: var(--font-main);
+            font-family: 'Inter', sans-serif;
             height: 100vh;
             width: 100vw;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            /* Subtle gradient for depth */
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
         }
 
-        /* --- TOP NAVIGATION --- */
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 50px;
-            width: 100%;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.5;
-        }
-
-        /* --- MAIN TITLE (TOP CENTER) --- */
+        /* --- 1. TOP CENTER TITLE --- */
         header {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Pushes it towards the top */
-            padding-top: 80px;
+            width: 100%;
+            padding-top: 60px;
+            text-align: center;
+            z-index: 10;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 700;
-            letter-spacing: 20px;
+            letter-spacing: 18px;
             text-transform: uppercase;
-            text-align: center;
         }
 
-        /* --- BOTTOM THREE-COLUMN CONTENT --- */
-        .bottom-container {
-            width: 100%;
-            padding: 40px 60px 60px 60px;
+        /* --- 2. MIDDLE SECTION (Left & Right Content) --- */
+        main {
+            flex: 1; /* Pushes header to top and footer to bottom */
             display: flex;
-            justify-content: space-between; /* Spaces Left, Center, Right */
-            align-items: flex-end;
+            justify-content: space-between; /* Pushes items to far left and far right */
+            align-items: center; /* Centers them vertically in the middle of the screen */
+            padding: 0 80px; /* Space from the edges */
         }
 
-        /* We use flex: 1 on all three to ensure the Center one is mathematically centered */
-        .column {
-            flex: 1;
+        .middle-text {
+            max-width: 250px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
         }
 
-        .col-left {
+        .left-mid {
             text-align: left;
         }
 
-        .col-center {
-            text-align: center;
-        }
-
-        .col-right {
+        .right-mid {
             text-align: right;
         }
 
-        .column p {
+        /* --- 3. BOTTOM SECTION (Login/Reg & Find) --- */
+        footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Pushes content to far left and far right */
+            align-items: flex-end; /* Aligns them to the bottom */
+            padding: 40px 80px 60px 80px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-link {
+            color: var(--text-color);
+            text-decoration: none;
             font-size: 11px;
-            line-height: 1.8;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: opacity 0.3s;
         }
 
-        .col-left p { color: var(--dim-text); }
-        .col-center p { 
-            font-weight: 700; 
-            letter-spacing: 3px;
-            /* A subtle pulse effect for the "AI Active" text */
-            animation: pulse 2s infinite;
-        }
-        .col-right p { color: var(--dim-text); }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
+        .footer-link:hover {
+            opacity: 0.5;
         }
 
-        /* Responsive adjustments */
+        /* Responsive Design */
         @media (max-width: 900px) {
-            .bottom-container {
+            main {
+                flex-direction: column;
+                padding: 0 40px;
+                text-align: center;
+            }
+            .left-mid, .right-mid {
+                text-align: center;
+                margin: 20px 0;
+            }
+            footer {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
                 gap: 30px;
-                padding-bottom: 40px;
+                padding: 20px;
             }
-            .col-left, .col-center, .col-right {
+            .footer-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .footer-right {
                 text-align: center;
             }
             h1 {
@@ -146,39 +142,33 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Vision</a></li>
-            <li><a href="#">Schemes</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Title (Top and Center) -->
+    <!-- Top Center -->
     <header>
         <h1>NEUROSCHOLAR</h1>
     </header>
 
-    <!-- Bottom Content (Left, Center, Right) -->
-    <div class="bottom-container">
-        
-        <!-- Left Side -->
-        <div class="column col-left">
-            <p>All your scholarships<br>at one site. Your AI mentor.</p>
+    <!-- Middle Section (Left Side Center & Right Side Center) -->
+    <main>
+        <div class="middle-text left-mid">
+            All your scholarships<br>at one site. Your AI mentor.
         </div>
 
-        <!-- Center Side -->
-        <div class="column col-center">
-            <p>● AI AGENT ACTIVE</p>
+        <div class="middle-text right-mid">
+            All your scholarships<br>at one site. Your AI mentor.
+        </div>
+    </main>
+
+    <!-- Bottom Section (Login/Reg Left & Find Right) -->
+    <footer>
+        <div class="footer-left">
+            <a href="#" class="footer-link">Login</a>
+            <a href="#" class="footer-link">Registration</a>
         </div>
 
-        <!-- Right Side -->
-        <div class="column col-right">
-            <p>A Neurotitan Community<br>Initiative. Estd 2026</p>
+        <div class="footer-right">
+            <a href="#" class="footer-link">Find Scholarship →</a>
         </div>
-
-    </div>
+    </footer>
 
 </body>
 </html>
