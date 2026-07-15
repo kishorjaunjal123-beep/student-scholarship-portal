@@ -6,15 +6,15 @@
     <title>Neuroscholar | AI Web Mentor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Added 800 and 900 weights for extra thickness -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #050505;
             --text-color: #ffffff;
-            --dim-text: rgba(255, 255, 255, 0.5);
-            --accent-color: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 15px;
         }
 
         * {
@@ -32,71 +32,105 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            background: 
+                radial-gradient(circle at 20% 30%, #1a1a1a 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #111 0%, transparent 40%),
+                #050505;
         }
 
-        /* --- 1. TOP NAVIGATION (Restored) --- */
-        nav {
+        /* --- TOP BAR --- */
+        .top-bar {
             width: 100%;
             display: flex;
             justify-content: center;
-            padding-top: 30px;
+            align-items: center;
+            padding: 30px 60px;
+            position: relative;
             z-index: 100;
         }
 
+        /* GLASS ELEMENT 1: NAV */
         .nav-links {
             display: flex;
             gap: 40px;
             list-style: none;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
             padding: 12px 40px;
-            border-radius: 50px;
+            border-radius: 100px;
             border: 1px solid var(--glass-border);
         }
 
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { opacity: 1; }
+
+        /* LOGIN ONLY (Top Corner) */
+        .top-login {
+            position: absolute;
+            right: 60px;
+        }
+
+        .login-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
             opacity: 0.6;
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-        }
+        .login-link:hover { opacity: 1; }
 
-        /* --- 2. HEADER (Title) --- */
+        /* --- HEADER (Updated for your image style) --- */
         header {
             width: 100%;
-            padding-top: 40px;
+            padding-top: 20px;
             text-align: center;
-            z-index: 10;
         }
 
         h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 700;
-            letter-spacing: 18px;
+            font-size: clamp(2.5rem, 8vw, 5.5rem); /* Increased size */
+            font-weight: 900; /* Increased weight to Black */
+            letter-spacing: 15px; /* Clean, tight spacing like image */
             text-transform: uppercase;
+            margin-right: -15px; /* Offset for centering */
+            line-height: 1;
         }
 
-        /* --- 3. MAIN (Left & Right Center Text) --- */
+        /* --- GLASS CONTENT CARDS --- */
         main {
             flex: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 80px;
+            padding: 0 10%;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            width: 320px;
         }
 
         .middle-text {
-            max-width: 250px;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.8;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 300;
@@ -105,22 +139,13 @@
         .left-mid { text-align: left; }
         .right-mid { text-align: right; }
 
-        /* --- 4. FOOTER (Login/Reg & Find) --- */
+        /* --- FOOTER --- */
         footer {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            padding: 40px 80px 60px 80px;
-        }
-
-        .footer-left {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-right {
-            text-align: right;
+            padding: 40px 10% 60px 10%;
         }
 
         .footer-link {
@@ -131,83 +156,62 @@
             letter-spacing: 2px;
             font-weight: 600;
             transition: 0.3s;
+            opacity: 0.6;
         }
 
-        .footer-link:hover {
-            opacity: 0.5;
-        }
+        .footer-link:hover { opacity: 1; }
 
-        /* Responsive Design */
-        @media (max-width: 900px) {
-            main {
-                flex-direction: column;
-                padding: 0 40px;
-                text-align: center;
-            }
-            .left-mid, .right-mid {
-                text-align: center;
-                margin: 20px 0;
-            }
-            footer {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 30px;
-                padding: 20px;
-            }
-            .footer-left {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .footer-right {
-                text-align: center;
-            }
-            h1 {
-                letter-spacing: 10px;
-            }
-            .nav-links {
-                gap: 20px;
-                padding: 10px 20px;
-            }
+        @media (max-width: 1000px) {
+            h1 { letter-spacing: 8px; margin-right: -8px; }
+            main { flex-direction: column; gap: 20px; }
+            .glass-card { width: 90%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation (Restored) -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Vision</a></li>
-            <li><a href="#">Schemes</a></li>
-        </ul>
-    </nav>
+    <div class="top-bar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Schemes</a></li>
+            </ul>
+        </nav>
 
-    <!-- Top Center Title -->
+        <div class="top-login">
+            <a href="#" class="login-link">Login</a>
+        </div>
+    </div>
+
     <header>
         <h1>NEUROSCHOLAR</h1>
     </header>
 
-    <!-- Middle Split Content -->
     <main>
-        <div class="middle-text left-mid">
-            All your scholarships<br>at one site. Your AI mentor.
+        <div class="glass-card">
+            <div class="middle-text left-mid">
+                Elevating education through<br>
+                intelligent automation.<br>
+                <b>Your AI Web Mentor.</b>
+            </div>
         </div>
 
-        <div class="middle-text right-mid">
-            All your scholarships<br>at one site. Your AI mentor.
+        <div class="glass-card">
+            <div class="middle-text right-mid">
+                Centralizing every<br>
+                scholarship opportunity.<br>
+                <b>One site. No limits.</b>
+            </div>
         </div>
     </main>
 
-    <!-- Bottom Corners -->
     <footer>
         <div class="footer-left">
-            <a href="#" class="footer-link">Login</a>
             <a href="#" class="footer-link">Registration</a>
         </div>
-
         <div class="footer-right">
-            <a href="#" class="footer-link">Find Scholarship →</a>
+            <a href="#" class="footer-link">Find Scholarship &rarr;</a>
         </div>
     </footer>
 
