@@ -169,7 +169,7 @@
 
         .login-container { max-width: 400px; }
 
-        /* --- ABOUT SECTION SPECIFIC STYLES --- */
+        /* --- ABOUT & VISION SECTION STYLES --- */
         .about-container {
             max-width: 900px;
             text-align: center;
@@ -350,7 +350,7 @@
             <nav>
                 <ul class="nav-links">
                     <li><a onclick="showAbout()">About</a></li>
-                    <li><a href="#">Vision</a></li>
+                    <li><a onclick="showVision()">Vision</a></li>
                     <li><a href="#">Schemes</a></li>
                 </ul>
             </nav>
@@ -404,7 +404,6 @@
                     <h3>AI Mentorship</h3>
                     <p>Intelligent algorithms that guide you through the complex application process.</p>
                 </div>
-                <!-- UPDATED SECTION: Changed from Global Access to Pan-India Access -->
                 <div class="about-feature">
                     <h3>Pan-India Access</h3>
                     <p>A centralized hub containing thousands of scholarships available within India.</p>
@@ -412,6 +411,31 @@
                 <div class="about-feature">
                     <h3>Smart Matching</h3>
                     <p>Precision matching based on your academic profile and unique background.</p>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
+        </div>
+    </div>
+
+    <!-- VISION PAGE (NEW SECTION) -->
+    <div id="vision-page" class="page-overlay hidden">
+        <div class="form-container about-container">
+            <h2 class="about-title">Our Vision</h2>
+            <p class="about-description">
+                To ensure that no student's potential is ever limited by their financial circumstances. We aim to create a world where every academic opportunity is known, accessible, and achievable for every student.
+            </p>
+            <div class="about-grid">
+                <div class="about-feature">
+                    <h3>Universal Awareness</h3>
+                    <p>Making sure every student is fully aware of every scholarship available to them.</p>
+                </div>
+                <div class="about-feature">
+                    <h3>Information Equality</h3>
+                    <p>Bridging the information gap between different socio-economic backgrounds.</p>
+                </div>
+                <div class="about-feature">
+                    <h3>Opportunity for All</h3>
+                    <p>Democratizing access to education by removing the hurdle of discovery.</p>
                 </div>
             </div>
             <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
@@ -511,11 +535,13 @@
         const regPage = document.getElementById('registration-page');
         const loginPage = document.getElementById('login-page');
         const aboutPage = document.getElementById('about-page');
+        const visionPage = document.getElementById('vision-page');
 
         function showLogin() {
             landingPage.classList.add('hidden');
             regPage.classList.add('hidden');
             aboutPage.classList.add('hidden');
+            visionPage.classList.add('hidden');
             loginPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
@@ -524,6 +550,7 @@
             landingPage.classList.add('hidden');
             loginPage.classList.add('hidden');
             aboutPage.classList.add('hidden');
+            visionPage.classList.add('hidden');
             regPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
@@ -532,7 +559,17 @@
             landingPage.classList.add('hidden');
             loginPage.classList.add('hidden');
             regPage.classList.add('hidden');
+            visionPage.classList.add('hidden');
             aboutPage.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showVision() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.add('hidden');
+            regPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
+            visionPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
@@ -541,6 +578,7 @@
             regPage.classList.add('hidden');
             loginPage.classList.add('hidden');
             aboutPage.classList.add('hidden');
+            visionPage.classList.add('hidden');
             document.body.style.overflow = 'hidden';
         }
 
