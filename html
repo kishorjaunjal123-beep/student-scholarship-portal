@@ -11,27 +11,7 @@
         :root {
             --bg-color: #050505;
             --text-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.08); /* Increased slightly for better contrast against bright image */
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-blur: 15px;
-            --accent-color: #ffffff;
-            --error-color: #ff4d4d;
-            --neon-red: rgba(255, 0, 0, 0.4);
-        }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neuroscholar | AI Web Mentor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050505;
-            --text-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.12); 
             --glass-border: rgba(255, 255, 255, 0.2);
             --glass-blur: 15px;
             --accent-color: #ffffff;
@@ -54,15 +34,15 @@
             flex-direction: column;
         }
 
-        /* --- LANDING PAGE (Updated to Flex Column) --- */
+        /* --- LANDING PAGE --- */
         #landing-page {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;           /* Added */
-            flex-direction: column;  /* Added to stack Top-bar, Header, Main, and Footer */
+            display: flex;           
+            flex-direction: column;  
             z-index: 1;
         }
 
@@ -79,7 +59,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.8; 
+            opacity: 1; /* INCREASED TO 100% */
             z-index: -1;
         }
 
@@ -115,7 +95,7 @@
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.5;
+            opacity: 1; /* INCREASED TO 100% */
             transition: 0.3s;
             cursor: pointer;
         }
@@ -131,7 +111,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            opacity: 0.6;
+            opacity: 1; /* INCREASED TO 100% */
             transition: 0.3s;
             cursor: pointer;
         }
@@ -159,7 +139,7 @@
 
         /* --- MAIN LANDING CONTENT --- */
         main {
-            flex: 1; /* This is the "spring" that pushes the footer down */
+            flex: 1; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -208,17 +188,19 @@
 
         .form-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 770px; 
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             -webkit-backdrop-filter: blur(var(--glass-blur));
             border: 1px solid var(--glass-border);
-            padding: 50px;
+            padding: 55px; 
             border-radius: 30px;
             margin: 20px;
         }
 
-        .login-container { max-width: 400px; }
+        .login-container { 
+            max-width: 440px; 
+        }
 
         /* --- ABOUT & VISION SECTION STYLES --- */
         .about-container {
@@ -238,7 +220,7 @@
             font-size: 14px;
             line-height: 2;
             letter-spacing: 1px;
-            opacity: 0.8;
+            opacity: 1; /* INCREASED TO 100% */
             margin-bottom: 50px;
             font-weight: 300;
         }
@@ -265,7 +247,7 @@
 
         .about-feature p {
             font-size: 11px;
-            opacity: 0.6;
+            opacity: 1; /* INCREASED TO 100% */
             line-height: 1.6;
             text-transform: uppercase;
         }
@@ -298,7 +280,7 @@
             font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            opacity: 0.6;
+            opacity: 1; /* INCREASED TO 100% */
         }
 
         .input-group input, .input-group select {
@@ -345,7 +327,7 @@
             text-decoration: none;
             font-size: 10px;
             letter-spacing: 2px;
-            opacity: 0.5;
+            opacity: 1; /* INCREASED TO 100% */
             text-transform: uppercase;
         }
 
@@ -356,16 +338,15 @@
             color: white;
             font-size: 10px;
             text-decoration: none;
-            opacity: 0.5;
+            opacity: 1; /* INCREASED TO 100% */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* --- FOOTER (Updated Positioning) --- */
+        /* --- FOOTER --- */
         footer {
             width: 100%;
             display: flex;
-            /* Space-between ensures one goes far left, one goes far right */
             justify-content: space-between; 
             align-items: flex-end;
             padding: 40px 10% 60px 10%;
@@ -381,7 +362,7 @@
             letter-spacing: 2px;
             font-weight: 600;
             transition: 0.3s;
-            opacity: 0.6;
+            opacity: 1; /* INCREASED TO 100% */
         }
 
         .footer-link:hover { opacity: 1; }
@@ -441,7 +422,7 @@
                 <a href="#" class="footer-link" onclick="showRegistration()">Registration</a>
             </div>
             <div class="footer-right">
-                <a href="#" class="footer-link">Find Scholarship &rarr;</a>
+                <a href="#" class="footer-link" onclick="showScholarship()">Find Scholarship &rarr;</a>
             </div>
         </footer>
     </div>
@@ -584,12 +565,38 @@
         </div>
     </div>
 
+    <!-- FIND SCHOLARSHIP PAGE (NEW) -->
+    <div id="scholarship-page" class="page-overlay hidden">
+        <div class="form-container">
+            <h2 class="reg-title">Find Scholarship</h2>
+            <p style="text-align: center; opacity: 0.7; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px;">Search our database of opportunities</p>
+            <form onsubmit="handleAuth(event, 'Search')">
+                <div class="input-group">
+                    <label>Keywords (e.g. STEM, Engineering)</label>
+                    <input type="text" placeholder="Enter topic...">
+                </div>
+                <div class="input-group" style="margin-top: 20px;">
+                    <label>Academic Level</label>
+                    <select>
+                        <option>Undergraduate</option>
+                        <option>Postgraduate</option>
+                        <option>PhD</option>
+                        <option>High School</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Search Now</button>
+                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
+            </form>
+        </div>
+    </div>
+
     <script>
         const landingPage = document.getElementById('landing-page');
         const regPage = document.getElementById('registration-page');
         const loginPage = document.getElementById('login-page');
         const aboutPage = document.getElementById('about-page');
         const visionPage = document.getElementById('vision-page');
+        const scholarshipPage = document.getElementById('scholarship-page');
 
         function showLogin() {
             hideAllPages();
@@ -615,6 +622,12 @@
             document.body.style.overflow = 'auto';
         }
 
+        function showScholarship() {
+            hideAllPages();
+            scholarshipPage.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
         function showLanding() {
             hideAllPages();
             landingPage.classList.remove('hidden');
@@ -627,6 +640,7 @@
             loginPage.classList.add('hidden');
             aboutPage.classList.add('hidden');
             visionPage.classList.add('hidden');
+            scholarshipPage.classList.add('hidden');
         }
 
         function handleAuth(event, type) {
@@ -636,654 +650,5 @@
         }
     </script>
 
-</body>
-</html>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- LANDING PAGE WITH PSEUDO-ELEMENT BACKGROUND --- */
-        #landing-page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        /* This is the layer that holds the image */
-        #landing-page::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Adjusted the gradient to be lighter so the image shows through more */
-            background: 
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-                url('panda.png'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
-            /* --- CHANGE THIS VALUE TO ADJUST IMAGE OPACITY --- */
-            opacity: 0.95; /* 1.0 is fully solid, 0.1 is very faded */
-            
-            z-index: -1; /* Puts the image behind the text */
-        }
-
-        /* --- UTILITIES --- */
-        .hidden { display: none !important; }
-
-        /* --- TOP BAR --- */
-        .top-bar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 60px;
-            position: relative;
-            z-index: 100;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            padding: 12px 40px;
-            border-radius: 100px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.5;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover { opacity: 1; }
-
-        .top-login { position: absolute; right: 60px; }
-
-        .login-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            opacity: 0.6;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .login-link:hover { opacity: 1; }
-
-        /* --- HEADER --- */
-        header {
-            width: 100%;
-            padding-top: 20px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: 15px;
-            text-transform: uppercase;
-            margin-right: -15px;
-            line-height: 1;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8); /* Added shadow for readability */
-        }
-
-        /* --- MAIN LANDING CONTENT --- */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 24px;
-            width: 320px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .middle-text {
-            font-size: 13px;
-            line-height: 1.8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .left-mid { text-align: left; }
-        .right-mid { text-align: right; }
-
-        /* --- SHARED PAGE OVERLAY STYLE --- */
-        .page-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            z-index: 200;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-            padding: 40px 0;
-        }
-
-        .form-container {
-            width: 100%;
-            max-width: 700px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            padding: 50px;
-            border-radius: 30px;
-            margin: 20px;
-        }
-
-        .login-container { max-width: 400px; }
-
-        /* --- ABOUT & VISION SECTION STYLES --- */
-        .about-container {
-            max-width: 900px;
-            text-align: center;
-        }
-
-        .about-title {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .about-description {
-            font-size: 14px;
-            line-height: 2;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .about-feature {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--glass-border);
-            padding: 30px 20px;
-            border-radius: 20px;
-        }
-
-        .about-feature h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .about-feature p {
-            font-size: 11px;
-            opacity: 0.6;
-            line-height: 1.6;
-            text-transform: uppercase;
-        }
-
-        /* --- REGISTRATION/LOGIN FORM STYLES --- */
-        .reg-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .full-width { grid-column: span 2; }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .input-group label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.6;
-        }
-
-        .input-group input, .input-group select {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 12px 15px;
-            border-radius: 8px;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .input-group input:focus {
-            border-color: var(--accent-color);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 30px;
-            background: white;
-            color: black;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-        }
-
-        .back-btn {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            opacity: 0.5;
-            text-transform: uppercase;
-        }
-
-        .switch-auth {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: white;
-            font-size: 10px;
-            text-decoration: none;
-            opacity: 0.5;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 40px 10% 60px 10%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: 0.3s;
-            opacity: 0.6;
-        }
-
-        .footer-link:hover { opacity: 1; }
-
-        @media (max-width: 1000px) {
-            h1 { letter-spacing: 8px; margin-right: -8px; }
-            main { flex-direction: column; gap: 20px; padding: 20px; }
-            .glass-card { width: 90%; }
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .about-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- LANDING PAGE WRAPPER -->
-    <div id="landing-page">
-        <div class="top-bar">
-            <nav>
-                <ul class="nav-links">
-                    <li><a onclick="showAbout()">About</a></li>
-                    <li><a onclick="showVision()">Vision</a></li>
-                    <li><a href="#">Schemes</a></li>
-                </ul>
-            </nav>
-
-            <div class="top-login">
-                <a class="login-link" onclick="showLogin()">Login</a>
-            </div>
-        </div>
-
-        <header>
-            <h1>NEUROSCHOLAR</h1>
-        </header>
-
-        <main>
-            <div class="glass-card">
-                <div class="middle-text left-mid">
-                    Elevating education through<br>
-                    intelligent automation.<br>
-                    <b>Your AI Web Mentor.</b>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <div class="middle-text right-mid">
-                    Centralizing every<br>
-                    scholarship opportunity.<br>
-                    <b>One site. No limits.</b>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <div class="footer-left">
-                <a href="#" class="footer-link" onclick="showRegistration()">Registration</a>
-            </div>
-            <div class="footer-right">
-                <a href="#" class="footer-link">Find Scholarship &rarr;</a>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ABOUT PAGE -->
-    <div id="about-page" class="page-overlay hidden">
-        <div class="form-container about-container">
-            <h2 class="about-title">About Neuroscholar</h2>
-            <p class="about-description">
-                Neuroscholar is a next-generation AI-driven platform designed to bridge the gap between ambitious students and life-changing financial opportunities. We believe that financial constraints should never be a barrier to brilliance.
-            </p>
-            <div class="about-grid">
-                <div class="about-feature">
-                    <h3>AI Mentorship</h3>
-                    <p>Intelligent algorithms that guide you through the complex application process.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Pan-India Access</h3>
-                    <p>A centralized hub containing thousands of scholarships available within India.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Smart Matching</h3>
-                    <p>Precision matching based on your academic profile and unique background.</p>
-                </div>
-            </div>
-            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
-        </div>
-    </div>
-
-    <!-- VISION PAGE -->
-    <div id="vision-page" class="page-overlay hidden">
-        <div class="form-container about-container">
-            <h2 class="about-title">Our Vision</h2>
-            <p class="about-description">
-                To ensure that no student's potential is ever limited by their financial circumstances. We aim to create a world where every academic opportunity is known, accessible, and achievable for every student.
-            </p>
-            <div class="about-grid">
-                <div class="about-feature">
-                    <h3>Universal Awareness</h3>
-                    <p>Making sure every student is fully aware of every scholarship available to them.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Information Equality</h3>
-                    <p>Bridging the information gap between different socio-economic backgrounds.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Opportunity for All</h3>
-                    <p>Democratizing access to education by removing the hurdle of discovery.</p>
-                </div>
-            </div>
-            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
-        </div>
-    </div>
-
-    <!-- LOGIN PAGE -->
-    <div id="login-page" class="page-overlay hidden">
-        <div class="form-container login-container">
-            <h2 class="reg-title">Login</h2>
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="input-group" style="margin-top: 20px;">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="submit-btn">Sign In</button>
-                <a href="#" class="switch-auth" onclick="showRegistration()">Don't have an account? Register</a>
-                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
-            </form>
-        </div>
-    </div>
-
-    <!-- REGISTRATION PAGE -->
-    <div id="registration-page" class="page-overlay hidden">
-        <div class="form-container">
-            <h2 class="reg-title">Register</h2>
-            
-            <form id="regForm" onsubmit="handleRegistration(event)">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label>First Name</label>
-                        <input type="text" id="regFirstName" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Middle Name</label>
-                        <input type="text" id="regMiddleName">
-                    </div>
-                    <div class="input-group full-width">
-                        <label>Surname</label>
-                        <input type="text" id="regSurname" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Date of Birth</label>
-                        <input type="date" id="regDOB" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Gender</label>
-                        <select id="regGender" required>
-                            <option value="" disabled selected>Select</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Non-binary</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Nationality</label>
-                        <input type="text" id="regNationality" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Country</label>
-                        <input type="text" id="regCountry" required>
-                    </div>
-                    <div class="input-group">
-                        <label>City</label>
-                        <input type="text" id="regCity" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="regEmail" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm Email</label>
-                        <input type="email" id="regConfirmEmail" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="regPhone" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm Phone</label>
-                        <input type="tel" id="regConfirmPhone" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Create Password</label>
-                        <input type="password" id="regPassword" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm Password</label>
-                        <input type="password" id="regConfirmPassword" required>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Create Account</button>
-                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        const landingPage = document.getElementById('landing-page');
-        const regPage = document.getElementById('registration-page');
-        const loginPage = document.getElementById('login-page');
-        const aboutPage = document.getElementById('about-page');
-        const visionPage = document.getElementById('vision-page');
-
-        function showLogin() {
-            hideAllPages();
-            loginPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showRegistration() {
-            hideAllPages();
-            regPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showAbout() {
-            hideAllPages();
-            aboutPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showVision() {
-            hideAllPages();
-            visionPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showLanding() {
-            hideAllPages();
-            landingPage.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideAllPages() {
-            landingPage.classList.add('hidden');
-            regPage.classList.add('hidden');
-            loginPage.classList.add('hidden');
-            aboutPage.classList.add('hidden');
-            visionPage.classList.add('hidden');
-        }
-
-        function handleRegistration(event) {
-            event.preventDefault();
-            const email = document.getElementById('regEmail').value;
-            const confirmEmail = document.getElementById('regConfirmEmail').value;
-            const password = document.getElementById('regPassword').value;
-            const confirmPassword = document.getElementById('regConfirmPassword').value;
-
-            if (email !== confirmEmail || password !== confirmPassword) {
-                alert("Validation failed: Emails or Passwords do not match!");
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('neuroscholar_users') || '[]');
-            if (users.some(u => u.email === email)) {
-                alert("User already exists!");
-                return;
-            }
-
-            users.push({ 
-                firstName: document.getElementById('regFirstName').value, 
-                email: email, 
-                password: password,
-                phone: document.getElementById('regPhone').value
-            });
-            localStorage.setItem('neuroscholar_users', JSON.stringify(users));
-            alert("Registration Successful!");
-            showLanding();
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const users = JSON.parse(localStorage.getItem('neuroscholar_users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-
-            if (user) {
-                alert("Welcome back, " + user.firstName + "!");
-                showLanding();
-            } else {
-                alert("Invalid credentials!");
-            }
-        }
-    </script>
 </body>
 </html>
