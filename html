@@ -72,6 +72,7 @@
             text-transform: uppercase;
             opacity: 0.5;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover { opacity: 1; }
@@ -166,11 +167,59 @@
             margin: 20px;
         }
 
-        /* Smaller container for login specifically */
-        .login-container {
-            max-width: 400px;
+        .login-container { max-width: 400px; }
+
+        /* --- ABOUT SECTION SPECIFIC STYLES --- */
+        .about-container {
+            max-width: 900px;
+            text-align: center;
         }
 
+        .about-title {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .about-description {
+            font-size: 14px;
+            line-height: 2;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .about-feature {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            border-radius: 20px;
+        }
+
+        .about-feature h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .about-feature p {
+            font-size: 11px;
+            opacity: 0.6;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        /* --- REGISTRATION/LOGIN FORM STYLES --- */
         .reg-title {
             font-size: 24px;
             font-weight: 800;
@@ -289,6 +338,7 @@
             .glass-card { width: 90%; }
             .form-grid { grid-template-columns: 1fr; }
             .full-width { grid-column: span 1; }
+            .about-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -299,7 +349,7 @@
         <div class="top-bar">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">About</a></li>
+                    <li><a onclick="showAbout()">About</a></li>
                     <li><a href="#">Vision</a></li>
                     <li><a href="#">Schemes</a></li>
                 </ul>
@@ -342,6 +392,32 @@
         </footer>
     </div>
 
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page-overlay hidden">
+        <div class="form-container about-container">
+            <h2 class="about-title">About Neuroscholar</h2>
+            <p class="about-description">
+                Neuroscholar is a next-generation AI-driven platform designed to bridge the gap between ambitious students and life-changing financial opportunities. We believe that financial constraints should never be a barrier to brilliance.
+            </p>
+            <div class="about-grid">
+                <div class="about-feature">
+                    <h3>AI Mentorship</h3>
+                    <p>Intelligent algorithms that guide you through the complex application process.</p>
+                </div>
+                <!-- UPDATED SECTION: Changed from Global Access to Pan-India Access -->
+                <div class="about-feature">
+                    <h3>Pan-India Access</h3>
+                    <p>A centralized hub containing thousands of scholarships available within India.</p>
+                </div>
+                <div class="about-feature">
+                    <h3>Smart Matching</h3>
+                    <p>Precision matching based on your academic profile and unique background.</p>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
+        </div>
+    </div>
+
     <!-- LOGIN PAGE -->
     <div id="login-page" class="page-overlay hidden">
         <div class="form-container login-container">
@@ -369,7 +445,6 @@
             
             <form id="regForm" onsubmit="handleAuth(event, 'Registration')">
                 <div class="form-grid">
-                    <!-- Name Section -->
                     <div class="input-group">
                         <label>First Name</label>
                         <input type="text" required>
@@ -382,8 +457,6 @@
                         <label>Surname</label>
                         <input type="text" required>
                     </div>
-
-                    <!-- Identity Section -->
                     <div class="input-group">
                         <label>Date of Birth</label>
                         <input type="date" required>
@@ -398,8 +471,6 @@
                             <option>Other</option>
                         </select>
                     </div>
-
-                    <!-- Nationality/Location Section -->
                     <div class="input-group">
                         <label>Nationality</label>
                         <input type="text" required>
@@ -412,8 +483,6 @@
                         <label>City</label>
                         <input type="text" required>
                     </div>
-
-                    <!-- Contact Section -->
                     <div class="input-group">
                         <label>Email</label>
                         <input type="email" required>
@@ -431,7 +500,6 @@
                         <input type="tel" required>
                     </div>
                 </div>
-
                 <button type="submit" class="submit-btn">Create Account</button>
                 <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
             </form>
@@ -442,35 +510,43 @@
         const landingPage = document.getElementById('landing-page');
         const regPage = document.getElementById('registration-page');
         const loginPage = document.getElementById('login-page');
+        const aboutPage = document.getElementById('about-page');
 
-        // Function to show the Login Page
         function showLogin() {
             landingPage.classList.add('hidden');
             regPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
             loginPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
-        // Function to show the Registration Page
         function showRegistration() {
             landingPage.classList.add('hidden');
             loginPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
             regPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
-        // Function to go back to the Main Landing Page
+        function showAbout() {
+            landingPage.classList.add('hidden');
+            loginPage.classList.add('hidden');
+            regPage.classList.add('hidden');
+            aboutPage.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
         function showLanding() {
             landingPage.classList.remove('hidden');
             regPage.classList.add('hidden');
             loginPage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        // Unified handler for Login and Registration submission
         function handleAuth(event, type) {
             event.preventDefault();
-            alert(type + " Successful! (Simulation)");
+            alert(type + " Successful!");
             showLanding();
         }
     </script>
