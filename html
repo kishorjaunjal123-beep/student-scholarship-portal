@@ -11,10 +11,12 @@
         :root {
             --bg-color: #050505;
             --text-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.08); /* Increased slightly for better contrast against bright image */
+            --glass-border: rgba(255, 255, 255, 0.2);
             --glass-blur: 15px;
             --accent-color: #ffffff;
+            --error-color: #ff4d4d;
+            --neon-red: rgba(255, 0, 0, 0.4);
         }
 
         * {
@@ -32,10 +34,38 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+        }
+
+        /* --- LANDING PAGE WITH PSEUDO-ELEMENT BACKGROUND --- */
+        #landing-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* This is the layer that holds the image */
+        #landing-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Adjusted the gradient to be lighter so the image shows through more */
             background: 
-                radial-gradient(circle at 20% 30%, #1a1a1a 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, #111 0%, transparent 40%),
-                #050505;
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                url('panda.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* --- CHANGE THIS VALUE TO ADJUST IMAGE OPACITY --- */
+            opacity: 0.95; /* 1.0 is fully solid, 0.1 is very faded */
+            
+            z-index: -1; /* Puts the image behind the text */
         }
 
         /* --- UTILITIES --- */
@@ -98,6 +128,8 @@
             width: 100%;
             padding-top: 20px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
@@ -107,6 +139,7 @@
             text-transform: uppercase;
             margin-right: -15px;
             line-height: 1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8); /* Added shadow for readability */
         }
 
         /* --- MAIN LANDING CONTENT --- */
@@ -116,6 +149,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 10%;
+            position: relative;
+            z-index: 10;
         }
 
         .glass-card {
@@ -126,6 +161,7 @@
             padding: 40px;
             border-radius: 24px;
             width: 320px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .middle-text {
@@ -317,6 +353,8 @@
             justify-content: space-between;
             align-items: flex-end;
             padding: 40px 10% 60px 10%;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-link {
@@ -334,7 +372,7 @@
 
         @media (max-width: 1000px) {
             h1 { letter-spacing: 8px; margin-right: -8px; }
-            main { flex-direction: column; gap: 20px; }
+            main { flex-direction: column; gap: 20px; padding: 20px; }
             .glass-card { width: 90%; }
             .form-grid { grid-template-columns: 1fr; }
             .full-width { grid-column: span 1; }
@@ -345,7 +383,7 @@
 <body>
 
     <!-- LANDING PAGE WRAPPER -->
-    <div id="landing-page" style="display: contents;">
+    <div id="landing-page">
         <div class="top-bar">
             <nav>
                 <ul class="nav-links">
@@ -417,7 +455,7 @@
         </div>
     </div>
 
-    <!-- VISION PAGE (NEW SECTION) -->
+    <!-- VISION PAGE -->
     <div id="vision-page" class="page-overlay hidden">
         <div class="form-container about-container">
             <h2 class="about-title">Our Vision</h2>
@@ -446,14 +484,14 @@
     <div id="login-page" class="page-overlay hidden">
         <div class="form-container login-container">
             <h2 class="reg-title">Login</h2>
-            <form onsubmit="handleAuth(event, 'Login')">
+            <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="input-group">
                     <label>Email Address</label>
-                    <input type="email" required>
+                    <input type="email" id="loginEmail" required>
                 </div>
                 <div class="input-group" style="margin-top: 20px;">
                     <label>Password</label>
-                    <input type="password" required>
+                    <input type="password" id="loginPassword" required>
                 </div>
                 <button type="submit" class="submit-btn">Sign In</button>
                 <a href="#" class="switch-auth" onclick="showRegistration()">Don't have an account? Register</a>
@@ -467,27 +505,27 @@
         <div class="form-container">
             <h2 class="reg-title">Register</h2>
             
-            <form id="regForm" onsubmit="handleAuth(event, 'Registration')">
+            <form id="regForm" onsubmit="handleRegistration(event)">
                 <div class="form-grid">
                     <div class="input-group">
                         <label>First Name</label>
-                        <input type="text" required>
+                        <input type="text" id="regFirstName" required>
                     </div>
                     <div class="input-group">
                         <label>Middle Name</label>
-                        <input type="text">
+                        <input type="text" id="regMiddleName">
                     </div>
                     <div class="input-group full-width">
                         <label>Surname</label>
-                        <input type="text" required>
+                        <input type="text" id="regSurname" required>
                     </div>
                     <div class="input-group">
                         <label>Date of Birth</label>
-                        <input type="date" required>
+                        <input type="date" id="regDOB" required>
                     </div>
                     <div class="input-group">
                         <label>Gender</label>
-                        <select required>
+                        <select id="regGender" required>
                             <option value="" disabled selected>Select</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -497,31 +535,40 @@
                     </div>
                     <div class="input-group">
                         <label>Nationality</label>
-                        <input type="text" required>
+                        <input type="text" id="regNationality" required>
                     </div>
                     <div class="input-group">
                         <label>Country</label>
-                        <input type="text" required>
+                        <input type="text" id="regCountry" required>
                     </div>
                     <div class="input-group">
                         <label>City</label>
-                        <input type="text" required>
+                        <input type="text" id="regCity" required>
                     </div>
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" required>
+                        <input type="email" id="regEmail" required>
                     </div>
                     <div class="input-group">
                         <label>Confirm Email</label>
-                        <input type="email" required>
+                        <input type="email" id="regConfirmEmail" required>
                     </div>
                     <div class="input-group">
                         <label>Phone Number</label>
-                        <input type="tel" required>
+                        <input type="tel" id="regPhone" required>
                     </div>
                     <div class="input-group">
                         <label>Confirm Phone</label>
-                        <input type="tel" required>
+                        <input type="tel" id="regConfirmPhone" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Create Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" required>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Create Account</button>
@@ -538,56 +585,86 @@
         const visionPage = document.getElementById('vision-page');
 
         function showLogin() {
-            landingPage.classList.add('hidden');
-            regPage.classList.add('hidden');
-            aboutPage.classList.add('hidden');
-            visionPage.classList.add('hidden');
+            hideAllPages();
             loginPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
         function showRegistration() {
-            landingPage.classList.add('hidden');
-            loginPage.classList.add('hidden');
-            aboutPage.classList.add('hidden');
-            visionPage.classList.add('hidden');
+            hideAllPages();
             regPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
         function showAbout() {
-            landingPage.classList.add('hidden');
-            loginPage.classList.add('hidden');
-            regPage.classList.add('hidden');
-            visionPage.classList.add('hidden');
+            hideAllPages();
             aboutPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
         function showVision() {
-            landingPage.classList.add('hidden');
-            loginPage.classList.add('hidden');
-            regPage.classList.add('hidden');
-            aboutPage.classList.add('hidden');
+            hideAllPages();
             visionPage.classList.remove('hidden');
             document.body.style.overflow = 'auto';
         }
 
         function showLanding() {
+            hideAllPages();
             landingPage.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideAllPages() {
+            landingPage.classList.add('hidden');
             regPage.classList.add('hidden');
             loginPage.classList.add('hidden');
             aboutPage.classList.add('hidden');
             visionPage.classList.add('hidden');
-            document.body.style.overflow = 'hidden';
         }
 
-        function handleAuth(event, type) {
+        function handleRegistration(event) {
             event.preventDefault();
-            alert(type + " Successful!");
+            const email = document.getElementById('regEmail').value;
+            const confirmEmail = document.getElementById('regConfirmEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            if (email !== confirmEmail || password !== confirmPassword) {
+                alert("Validation failed: Emails or Passwords do not match!");
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('neuroscholar_users') || '[]');
+            if (users.some(u => u.email === email)) {
+                alert("User already exists!");
+                return;
+            }
+
+            users.push({ 
+                firstName: document.getElementById('regFirstName').value, 
+                email: email, 
+                password: password,
+                phone: document.getElementById('regPhone').value
+            });
+            localStorage.setItem('neuroscholar_users', JSON.stringify(users));
+            alert("Registration Successful!");
             showLanding();
         }
-    </script>
 
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const users = JSON.parse(localStorage.getItem('neuroscholar_users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                alert("Welcome back, " + user.firstName + "!");
+                showLanding();
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
 </body>
 </html>
