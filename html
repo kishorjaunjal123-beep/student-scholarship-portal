@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-background">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neuroscholar | AI Web Mentor</title>
+    <title>CampusConnect | Elite Student Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #050505;
             --text-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.12); 
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-blur: 15px;
-            --accent-color: #ffffff;
+            /* PROPER GLASSMORPHISM SYSTEM */
+            --glass-bg: rgba(255, 255, 255, 0.04); /* Very low opacity for clarity */
+            --glass-border: rgba(255, 255, 255, 0.12); /* Thin light edge */
+            --glass-blur: 30px; /* High blur for frosting effect */
+            --accent-color: #6366f1; 
+            --text-muted: #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
@@ -37,50 +37,48 @@
         /* --- LANDING PAGE --- */
         #landing-page {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;           
-            flex-direction: column;  
-            z-index: 1;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; z-index: 1;
         }
 
         #landing-page::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-                url('panda.png'); 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), 
+                url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1350&q=80'); 
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            opacity: 1; /* INCREASED TO 100% */
             z-index: -1;
         }
 
-        /* --- UTILITIES --- */
         .hidden { display: none !important; }
 
-        /* --- TOP BAR --- */
-        .top-bar {
+        /* --- NAVIGATION --- */
+        nav {
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 30px 60px;
-            position: relative;
-            z-index: 100;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
-        .nav-links {
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-center {
             display: flex;
             gap: 40px;
-            list-style: none;
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -89,55 +87,53 @@
             border: 1px solid var(--glass-border);
         }
 
-        .nav-links a {
+        .nav-center a {
             color: var(--text-color);
             text-decoration: none;
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 1; /* INCREASED TO 100% */
+            opacity: 0.6;
             transition: 0.3s;
             cursor: pointer;
         }
 
-        .nav-links a:hover { opacity: 1; }
+        .nav-center a:hover { opacity: 1; color: var(--accent-color); }
 
-        .top-login { position: absolute; right: 60px; }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
 
-        .login-link {
-            color: var(--text-color);
+        .login-btn {
+            color: white;
             text-decoration: none;
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 700;
-            opacity: 1; /* INCREASED TO 100% */
-            transition: 0.3s;
+            font-weight: 800; /* BOLD */
             cursor: pointer;
+            transition: 0.3s;
         }
+        .login-btn:hover { opacity: 0.6; }
 
-        .login-link:hover { opacity: 1; }
-
-        /* --- HEADER --- */
+        /* --- HERO --- */
         header {
             width: 100%;
-            padding-top: 20px;
+            padding-top: 120px;
             text-align: center;
             position: relative;
             z-index: 10;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
             font-weight: 900;
             letter-spacing: 15px;
             text-transform: uppercase;
-            margin-right: -15px;
-            line-height: 1;
             text-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        /* --- MAIN LANDING CONTENT --- */
         main {
             flex: 1; 
             display: flex;
@@ -148,6 +144,7 @@
             z-index: 10;
         }
 
+        /* GLASS CARD STYLE */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
@@ -156,7 +153,7 @@
             padding: 40px;
             border-radius: 24px;
             width: 320px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         .middle-text {
@@ -170,485 +167,319 @@
         .left-mid { text-align: left; }
         .right-mid { text-align: right; }
 
-        /* --- SHARED PAGE OVERLAY STYLE --- */
+        footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between; 
+            padding: 40px 10%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        
+        .footer-link.bold { font-weight: 800; opacity: 1; }
+        .footer-link.bold:hover { opacity: 0.6; }
+
+        /* --- PAGE OVERLAYS (Views) --- */
         .page-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-color);
             z-index: 200;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow-y: auto;
-            padding: 40px 0;
+            padding: 80px 20px;
         }
 
         .form-container {
             width: 100%;
-            max-width: 770px; 
+            max-width: 850px; 
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             -webkit-backdrop-filter: blur(var(--glass-blur));
             border: 1px solid var(--glass-border);
             padding: 55px; 
             border-radius: 30px;
-            margin: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        .login-container { 
-            max-width: 440px; 
-        }
+        .login-container { max-width: 400px; margin: auto; }
 
-        /* --- ABOUT & VISION SECTION STYLES --- */
-        .about-container {
-            max-width: 900px;
-            text-align: center;
+        /* --- ABOUT & VISION --- */
+        .info-header { text-align: center; margin-bottom: 50px; }
+        .info-header h2 { font-size: 2.5rem; letter-spacing: 10px; text-transform: uppercase; }
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .info-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border); 
+            padding: 35px 25px; 
+            border-radius: 20px; 
         }
+        .info-card h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; color: var(--accent-color); }
+        .info-card p { font-size: 13px; line-height: 1.8; text-transform: uppercase; opacity: 0.7; }
 
-        .about-title {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
+        /* --- EVENTS --- */
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; width: 100%; }
+        .event-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            transition: 0.3s; 
         }
+        .event-card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .category-badge { font-size: 10px; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; }
+        .event-title { font-size: 1.2rem; margin: 10px 0; font-weight: 700; }
+        .event-details { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
+        .event-details i { margin-right: 8px; color: var(--accent-color); }
 
-        .about-description {
-            font-size: 14px;
-            line-height: 2;
-            letter-spacing: 1px;
-            opacity: 1; /* INCREASED TO 100% */
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .about-feature {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--glass-border);
-            padding: 30px 20px;
-            border-radius: 20px;
-        }
-
-        .about-feature h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .about-feature p {
-            font-size: 11px;
-            opacity: 1; /* INCREASED TO 100% */
-            line-height: 1.6;
-            text-transform: uppercase;
-        }
-
-        /* --- REGISTRATION/LOGIN FORM STYLES --- */
-        .reg-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
+        /* --- AUTH FORMS --- */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .full-width { grid-column: span 2; }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .input-group label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 1; /* INCREASED TO 100% */
-        }
-
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; }
         .input-group input, .input-group select {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 12px 15px;
-            border-radius: 8px;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border);
+            padding: 12px; border-radius: 8px; color: white; outline: none;
         }
-
-        .input-group input:focus {
-            border-color: var(--accent-color);
-            background: rgba(255, 255, 255, 0.1);
-        }
+        /* Dropdown option fix */
+        select option { background-color: #111; color: white; }
 
         .submit-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 30px;
-            background: white;
-            color: black;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
+            width: 100%; padding: 15px; margin-top: 30px;
+            background: white; color: black; border: none; border-radius: 8px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer;
         }
+        .back-btn { display: block; text-align: center; margin-top: 25px; color: white; text-decoration: none; font-size: 10px; text-transform: uppercase; opacity: 0.5; cursor: pointer;}
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-        }
-
-        .back-btn {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            opacity: 1; /* INCREASED TO 100% */
-            text-transform: uppercase;
-        }
-
-        .switch-auth {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: white;
-            font-size: 10px;
-            text-decoration: none;
-            opacity: 1; /* INCREASED TO 100% */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-between; 
-            align-items: flex-end;
-            padding: 40px 10% 60px 10%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: 0.3s;
-            opacity: 1; /* INCREASED TO 100% */
-        }
-
-        .footer-link:hover { opacity: 1; }
+        /* --- MODAL --- */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:2000; backdrop-filter: blur(10px); }
+        .modal { background: #111; width: 90%; max-width: 450px; padding: 40px; border-radius: 24px; position: relative; color: white; border: 1px solid var(--glass-border); }
+        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: white; }
 
         @media (max-width: 1000px) {
-            h1 { letter-spacing: 8px; margin-right: -8px; }
-            main { flex-direction: column; gap: 20px; padding: 20px; }
-            .glass-card { width: 90%; }
-            .form-grid { grid-template-columns: 1fr; }
+            .nav-center { display: none; }
+            main { flex-direction: column; text-align: center; gap: 40px; }
+            .left-mid, .right-mid { text-align: center; }
+            .info-grid, .form-grid { grid-template-columns: 1fr; }
             .full-width { grid-column: span 1; }
-            .about-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LANDING PAGE WRAPPER -->
+    <!-- LANDING PAGE -->
     <div id="landing-page">
-        <div class="top-bar">
-            <nav>
-                <ul class="nav-links">
-                    <li><a onclick="showAbout()">About</a></li>
-                    <li><a onclick="showVision()">Vision</a></li>
-                    <li><a href="#">Schemes</a></li>
-                </ul>
-            </nav>
-
-            <div class="top-login">
-                <a class="login-link" onclick="showLogin()">Login</a>
+        <nav>
+            <a href="#" class="nav-logo" onclick="showView('landing-page')">CampusConnect</a>
+            
+            <div class="nav-center">
+                <a onclick="showView('events-view')">Events</a>
+                <a onclick="showView('about-view')">About</a>
+                <a onclick="showView('vision-view')">Vision</a>
             </div>
-        </div>
+
+            <div class="nav-right">
+                <a class="login-btn" onclick="showView('login-view')">Login</a>
+            </div>
+        </nav>
 
         <header>
-            <h1>NEUROSCHOLAR</h1>
+            <h1>CAMPUSCONNECT</h1>
         </header>
 
         <main>
             <div class="glass-card">
                 <div class="middle-text left-mid">
-                    Elevating education through<br>
-                    intelligent automation.<br>
-                    <b>Your AI Web Mentor.</b>
+                    Elevating campus life through<br>
+                    intelligent coordination.<br>
+                    <b>Your Event Mentor.</b>
                 </div>
             </div>
 
             <div class="glass-card">
                 <div class="middle-text right-mid">
                     Centralizing every<br>
-                    scholarship opportunity.<br>
-                    <b>One site. No limits.</b>
+                    student activity.<br>
+                    <b>One Hub. No Limits.</b>
                 </div>
             </div>
         </main>
 
         <footer>
             <div class="footer-left">
-                <a href="#" class="footer-link" onclick="showRegistration()">Registration</a>
+                <a href="#" class="footer-link bold" onclick="showView('register-view')">Registration</a>
             </div>
             <div class="footer-right">
-                <a href="#" class="footer-link" onclick="showScholarship()">Find Scholarship &rarr;</a>
+                <a href="#" class="footer-link bold" onclick="showView('events-view')">Find Events &rarr;</a>
             </div>
         </footer>
     </div>
 
-    <!-- ABOUT PAGE -->
-    <div id="about-page" class="page-overlay hidden">
-        <div class="form-container about-container">
-            <h2 class="about-title">About Neuroscholar</h2>
-            <p class="about-description">
-                Neuroscholar is a next-generation AI-driven platform designed to bridge the gap between ambitious students and life-changing financial opportunities. We believe that financial constraints should never be a barrier to brilliance.
-            </p>
-            <div class="about-grid">
-                <div class="about-feature">
-                    <h3>AI Mentorship</h3>
-                    <p>Intelligent algorithms that guide you through the complex application process.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Pan-India Access</h3>
-                    <p>A centralized hub containing thousands of scholarships available within India.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Smart Matching</h3>
-                    <p>Precision matching based on your academic profile and unique background.</p>
-                </div>
+    <!-- EVENTS VIEW -->
+    <div id="events-view" class="page-overlay hidden">
+        <div class="form-container" style="max-width: 1100px;">
+            <div class="info-header">
+                <h2>Upcoming Events</h2>
             </div>
-            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
+            <div class="event-grid" id="eventGrid"></div>
+            <a class="back-btn" onclick="showView('landing-page')">← Back to Home</a>
         </div>
     </div>
 
-    <!-- VISION PAGE -->
-    <div id="vision-page" class="page-overlay hidden">
-        <div class="form-container about-container">
-            <h2 class="about-title">Our Vision</h2>
-            <p class="about-description">
-                To ensure that no student's potential is ever limited by their financial circumstances. We aim to create a world where every academic opportunity is known, accessible, and achievable for every student.
-            </p>
-            <div class="about-grid">
-                <div class="about-feature">
-                    <h3>Universal Awareness</h3>
-                    <p>Making sure every student is fully aware of every scholarship available to them.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Information Equality</h3>
-                    <p>Bridging the information gap between different socio-economic backgrounds.</p>
-                </div>
-                <div class="about-feature">
-                    <h3>Opportunity for All</h3>
-                    <p>Democratizing access to education by removing the hurdle of discovery.</p>
-                </div>
+    <!-- ABOUT VIEW -->
+    <div id="about-view" class="page-overlay hidden">
+        <div class="form-container">
+            <div class="info-header">
+                <h2>About Us</h2>
             </div>
-            <a href="#" class="back-btn" onclick="showLanding()" style="margin-top: 50px; opacity: 1;">← Back to Home</a>
+            <div class="info-grid">
+                <div class="info-card"><h3>Coordination</h3><p>Seamlessly managing every campus event.</p></div>
+                <div class="info-card"><h3>Discovery</h3><p>Making sure no event goes unnoticed.</p></div>
+                <div class="info-card"><h3>Connection</h3><p>Building community through shared experiences.</p></div>
+            </div>
+            <a class="back-btn" onclick="showView('landing-page')" style="margin-top: 40px;">← Back to Home</a>
         </div>
     </div>
 
-    <!-- LOGIN PAGE -->
-    <div id="login-page" class="page-overlay hidden">
+    <!-- VISION VIEW -->
+    <div id="vision-view" class="page-overlay hidden">
+        <div class="form-container">
+            <div class="info-header">
+                <h2>Our Vision</h2>
+            </div>
+            <p style="text-align: center; font-size: 14px; opacity: 0.7; text-transform: uppercase; letter-spacing: 2px; max-width: 600px; margin: 0 auto;">
+                To create a digitally empowered campus ecosystem where every student can easily find opportunities to grow and connect.
+            </p>
+            <a class="back-btn" onclick="showView('landing-page')" style="margin-top: 40px;">← Back to Home</a>
+        </div>
+    </div>
+
+    <!-- LOGIN VIEW -->
+    <div id="login-view" class="page-overlay hidden">
         <div class="form-container login-container">
-            <h2 class="reg-title">Login</h2>
-            <form onsubmit="handleAuth(event, 'Login')">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" required>
-                </div>
-                <div class="input-group" style="margin-top: 20px;">
-                    <label>Password</label>
-                    <input type="password" required>
-                </div>
+            <h2 style="text-align:center; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px;">Login</h2>
+            <form onsubmit="handleAuth(event)">
+                <div class="input-group"><label>Email</label><input type="email" required></div>
+                <div class="input-group" style="margin-top: 20px;"><label>Password</label><input type="password" required></div>
                 <button type="submit" class="submit-btn">Sign In</button>
-                <a href="#" class="switch-auth" onclick="showRegistration()">Don't have an account? Register</a>
-                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
+                <a class="back-btn" onclick="showView('landing-page')">← Back to Home</a>
             </form>
         </div>
     </div>
 
-    <!-- REGISTRATION PAGE -->
-    <div id="registration-page" class="page-overlay hidden">
+    <!-- REGISTRATION VIEW -->
+    <div id="register-view" class="page-overlay hidden">
         <div class="form-container">
-            <h2 class="reg-title">Register</h2>
-            
-            <form id="regForm" onsubmit="handleAuth(event, 'Registration')">
+            <h2 style="text-align:center; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px;">Register</h2>
+            <form onsubmit="handleAuth(event)">
                 <div class="form-grid">
-                    <div class="input-group">
-                        <label>First Name</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Middle Name</label>
-                        <input type="text">
-                    </div>
+                    <div class="input-group"><label>First Name</label><input type="text" required></div>
+                    <div class="input-group"><label>Last Name</label><input type="text" required></div>
+                    <div class="input-group full-width"><label>Email</label><input type="email" required></div>
+                    <div class="input-group"><label>Student ID</label><input type="text" required></div>
+                    <div class="input-group"><label>Password</label><input type="password" required></div>
                     <div class="input-group full-width">
-                        <label>Surname</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Date of Birth</label>
-                        <input type="date" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Gender</label>
+                        <label>Area of Interest</label>
                         <select required>
-                            <option value="" disabled selected>Select</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Non-binary</option>
-                            <option>Other</option>
+                            <option value="" disabled selected>Select your interest</option>
+                            <option>Technical</option>
+                            <option>Arts/Culture</option>
+                            <option>Social</option>
+                            <option>Sports</option>
+                            <option>Business</option>
+                            <option>Academic</option>
                         </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Nationality</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Country</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="input-group">
-                        <label>City</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm Email</label>
-                        <input type="email" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Phone Number</label>
-                        <input type="tel" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm Phone</label>
-                        <input type="tel" required>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Create Account</button>
-                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
+                <a class="back-btn" onclick="showView('landing-page')">← Back to Home</a>
             </form>
         </div>
     </div>
 
-    <!-- FIND SCHOLARSHIP PAGE (NEW) -->
-    <div id="scholarship-page" class="page-overlay hidden">
-        <div class="form-container">
-            <h2 class="reg-title">Find Scholarship</h2>
-            <p style="text-align: center; opacity: 0.7; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px;">Search our database of opportunities</p>
-            <form onsubmit="handleAuth(event, 'Search')">
-                <div class="input-group">
-                    <label>Keywords (e.g. STEM, Engineering)</label>
-                    <input type="text" placeholder="Enter topic...">
-                </div>
-                <div class="input-group" style="margin-top: 20px;">
-                    <label>Academic Level</label>
-                    <select>
-                        <option>Undergraduate</option>
-                        <option>Postgraduate</option>
-                        <option>PhD</option>
-                        <option>High School</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-btn">Search Now</button>
-                <a href="#" class="back-btn" onclick="showLanding()">← Back to Home</a>
-            </form>
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span id="modalCat" class="category-badge">Category</span>
+            <h2 id="modalTitle" style="margin: 1rem 0;">Event Title</h2>
+            <p id="modalDesc" style="color: var(--text-muted); margin-bottom: 1.5rem;">Description...</p>
+            <button class="submit-btn" onclick="alert('Registered!')">Confirm Registration</button>
         </div>
     </div>
 
     <script>
-        const landingPage = document.getElementById('landing-page');
-        const regPage = document.getElementById('registration-page');
-        const loginPage = document.getElementById('login-page');
-        const aboutPage = document.getElementById('about-page');
-        const visionPage = document.getElementById('vision-page');
-        const scholarshipPage = document.getElementById('scholarship-page');
+        const eventsData = [
+            { id: 1, title: "AI Hackathon", category: "Tech", date: "Aug 25", loc: "Lab 01", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500", desc: "24-hour coding challenge." },
+            { id: 2, title: "Jazz Night", category: "Arts", date: "Sep 02", loc: "Main Stage", img: "https://images.unsplash.com/photo-1459749411177-042180ce673c?w=500", desc: "Smooth jazz and student bands." },
+            { id: 3, title: "Soccer Finals", category: "Sports", date: "Sep 10", loc: "Stadium", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500", desc: "The big championship match." },
+            { id: 4, title: "Design Expo", category: "Arts", date: "Oct 12", loc: "Gallery", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500", desc: "Visual arts showcase." }
+        ];
 
-        function showLogin() {
-            hideAllPages();
-            loginPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
+        function showView(viewId) {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('events-view').classList.add('hidden');
+            document.getElementById('about-view').classList.add('hidden');
+            document.getElementById('vision-view').classList.add('hidden');
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('register-view').classList.add('hidden');
+
+            document.getElementById(viewId).classList.remove('hidden');
+            document.body.style.overflow = (viewId === 'landing-page') ? 'hidden' : 'auto';
         }
 
-        function showRegistration() {
-            hideAllPages();
-            regPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showAbout() {
-            hideAllPages();
-            aboutPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showVision() {
-            hideAllPages();
-            visionPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showScholarship() {
-            hideAllPages();
-            scholarshipPage.classList.remove('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function showLanding() {
-            hideAllPages();
-            landingPage.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideAllPages() {
-            landingPage.classList.add('hidden');
-            regPage.classList.add('hidden');
-            loginPage.classList.add('hidden');
-            aboutPage.classList.add('hidden');
-            visionPage.classList.add('hidden');
-            scholarshipPage.classList.add('hidden');
-        }
-
-        function handleAuth(event, type) {
+        function handleAuth(event) {
             event.preventDefault();
-            alert(type + " Successful!");
-            showLanding();
+            alert("Success!");
+            showView('events-view');
         }
-    </script>
 
+        function renderEvents() {
+            const grid = document.getElementById('eventGrid');
+            grid.innerHTML = '';
+            eventsData.forEach(event => {
+                grid.innerHTML += `
+                    <div class="event-card">
+                        <img src="${event.img}" class="card-img">
+                        <div class="card-content">
+                            <span class="category-badge">${event.category}</span>
+                            <h3 class="event-title">${event.title}</h3>
+                            <div class="event-details"><p><i class="far fa-calendar"></i> ${event.date}</p><p><i class="fas fa-location-dot"></i> ${event.loc}</p></div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-outline" onclick="openModal(${event.id})">Details</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function openModal(id) {
+            const event = eventsData.find(e => e.id === id);
+            document.getElementById('modalTitle').innerText = event.title;
+            document.getElementById('modalCat').innerText = event.category;
+            document.getElementById('modalDesc').innerText = event.desc;
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+
+        window.onload = () => renderEvents();
+    </script>
 </body>
 </html>
